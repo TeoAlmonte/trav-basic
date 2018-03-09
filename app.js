@@ -10,7 +10,7 @@ const session = require('express-session');
 const ideas = require('./routes/ideas');
 const users = require('./routes/users');
 const passport = require('passport');
-const db = require('./config/database')
+const db = require('./config/database');
 /// Initialize Modules - Middleware
 
 // Passports
