@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 // Modules
 const express = require('express');
 const path = require('path');

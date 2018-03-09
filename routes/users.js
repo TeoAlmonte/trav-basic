@@ -1,8 +1,10 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const bcrypt = require('bcryptjs')
-const passport = require('passport')
-const router = express.Router()
+/*jshint esversion: 6 */
+
+const express = require('express');
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+const passport = require('passport');
+const router = express.Router();
 
 // User Model
 require('../models/User')
@@ -10,12 +12,12 @@ const User = mongoose.model('users')
 
 // Login
 router.get('/login', (req, res) => {
-  res.render('users/login')
-})
+  res.render('users/login');
+});
 
 router.get('/register', (req, res) => {
-  res.render('users/register')
-})
+  res.render('users/register');
+});
 
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
@@ -26,7 +28,7 @@ router.post('/login', (req, res, next) => {
 });
 
 router.post('/register', (req, res) => {
-  let errors = []
+  let errors = [];
 
   if (req.body.password != req.body.passwordconfirm) {
     errors.push({
@@ -68,24 +70,24 @@ router.post('/register', (req, res) => {
               newUser.password = hash;
               newUser.save()
                 .then(user => {
-                  req.flash('success_msg', 'registerd nice')
-                  res.redirect('/users/login')
+                  req.flash('success_msg', 'registerd nice');
+                  res.redirect('/users/login');
                 })
                 .catch(err => {
-                  console.log(err)
-                  return
-                })
-            })
-          })
+                  console.log(err);
+                  return;
+                });
+            });
+          });
         }
-      })
+      });
   }
-})
+});
 
 router.get('/logout', (req, res) => {
   req.logout();
   req.flash('success_msg', 'You are logged out');
-  res.redirect('/users/login')
-})
+  res.redirect('/users/login');
+});
 
 module.exports = router;

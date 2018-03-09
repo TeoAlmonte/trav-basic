@@ -20,10 +20,10 @@ module.exports = function(passport){
         if(isMatch){
           return done(null, user);
         } else {
-          return done(null, false, {message: 'nice password'})
+          return done(null, false, {message: 'nice password'});
         }
-      })
-    })
+      });
+    });
   }));
   passport.serializeUser(function(user, done) {
     done(null, user.id);
